@@ -4,8 +4,8 @@ import axios from "axios";                                    // lire API
 
 const App = () => {                                           // lecture de html
   const [image, setImage] = useState([]);                     // initialisation du useState pour le dynamique 
-  useEffect(() => {                                           // faire qu'une execution de cette methode
-    const fetchData = async () => {                           // methode asynchrone pour continuer le code en demandant une réponse d'un serveur
+  useEffect(() => {                                           // faire qu'une execution de cette methode (tableau vide au 2eme paramettre de useEffect)
+    const fetchData = async () => {                           // methode asynchrone pour continuer le code en demandant une réponse d'un serveur, attend que la demande soit retourner
       try {
         const images = await axios("https://picsum.photos/v2/list"); // recuperation de l'api
         console.log(images)
@@ -17,7 +17,7 @@ const App = () => {                                           // lecture de html
     fetchData();                                              // on appel la function qui recupere les données
   }, []);                                                     // le tableau vide sert a appelé qu'une fois la methode useEffect
 
-  return image.map(({ download_url, author }) => <><p>{author}</p><img src={download_url} height="250px" alt=""/></>)  //on retourne les url des images fourni par l'api et on les affiches avec la balise <img src={download_url} />
+  return image.map(({ download_url, author }) => <><p>{author}</p><img src={download_url} height="250px" alt="" /></>)  //on retourne les url des images fourni par l'api et on les affiches avec la balise <img src={download_url} />
 }
 
 export default App;
